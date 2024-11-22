@@ -8,7 +8,7 @@ namespace Utilities
     public class AnimatorTriggerer : MonoBehaviour
     {
     
-        [Tooltip("The animator that will have the trigger set")]
+        [Tooltip("The animator that will have the trigger set.")]
         [SerializeField] private Animator _animator;
         [Tooltip("The type of trigger that will be set.")]
         [SerializeField, OnValueChanged("ClearParameterName")] private AnimatorControllerParameterType _triggerType;
