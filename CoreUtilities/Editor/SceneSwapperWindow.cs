@@ -67,7 +67,7 @@ namespace Utilities.Editor
             }
             else if (_currentScenes.Count == 1)
             {
-                DisplayScenesInFolder(_currentScenes.First().Value);
+                DisplayScenesInFolder(_currentScenes.First().Value, "Root");
             }
             else
             {
@@ -85,15 +85,17 @@ namespace Utilities.Editor
                 folder.IsExpanded = EditorGUILayout.Foldout(folder.IsExpanded, sceneFolder);
                 if (!folder.IsExpanded) continue;
 
-                DisplayScenesInFolder(folder);
+                DisplayScenesInFolder(folder, sceneFolder);
             }
         }
         
-        private void DisplayScenesInFolder(SceneGroup scenes)
+        private void DisplayScenesInFolder(SceneGroup scenes, string folder)
         {
+            var prefix = folder == "Root" ? "" : folder + "/";
+            
             foreach (var scene in scenes.Scenes.Where(SceneMatchSearch))
             {
-                DrawButton(NameWithoutExtension(scene), () => SwapToScene(scene));
+                DrawButton(NameWithoutExtension(scene), () => SwapToScene(prefix + scene));
             }
         }
         
